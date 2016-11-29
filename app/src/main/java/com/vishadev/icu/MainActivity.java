@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     String loginuser;
     double lat;
     double lon;
+    double l;
+    double lo;
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -230,16 +232,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         // you can safely comment the following four lines but for this info
         IconGenerator iconFactory = new IconGenerator(this);
         iconFactory.setStyle(IconGenerator.STYLE_BLUE);
-        options.icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon("Anirudh")));
+        options.icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(MyFirebaseMessagingService.loginuser)));
         options.anchor(iconFactory.getAnchorU(), iconFactory.getAnchorV());
         try {
-            double l = Double.parseDouble(MyFirebaseMessagingService.lat);
-            double lon = Double.parseDouble(MyFirebaseMessagingService.lon);
+             l = Double.parseDouble(MyFirebaseMessagingService.lat);
+             lo = Double.parseDouble(MyFirebaseMessagingService.lon);
         } catch (Exception e) {
 
         }
 
-        LatLng currentLatLng = new LatLng(28.468670, 77.066826);
+        LatLng currentLatLng = new LatLng(l, lo);
         options.position(currentLatLng);
         Marker mapMarker = googleMaap.addMarker(options);
         long atTime = mCurrentLocation.getTime();

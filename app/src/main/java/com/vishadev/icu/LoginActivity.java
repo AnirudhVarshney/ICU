@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         final MaterialLoginView login = (MaterialLoginView) findViewById(R.id.login);
         ((DefaultLoginView)login.getLoginView()).setListener(new DefaultLoginView.DefaultLoginViewListener() {
 
@@ -55,10 +57,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
                 String pass = loginPass.getEditText().getText().toString();
                 if (!pass.equals(user)) {
-                    loginPass.setError("Wrong password");
+                    loginPass.setError("Name and Password Should be Same.");
                     return;
                 }
-                loginPass.setError("");
                 Snackbar.make(login, "Login success!", Snackbar.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 intent.putExtra("username",user);
